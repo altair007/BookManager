@@ -64,7 +64,7 @@
     [self.books addObject: aBook];
     
     // 更改图书的书单信息
-    [aBook.bookLists addObject:self];
+    [aBook.bookListNames addObject:self.name];
     
     return YES;
 }
@@ -75,7 +75,7 @@
     [self.books removeObject: aBook];
     
     // 更改被删除的图书的书单信息.
-    [aBook.bookLists removeObject:self];
+    [aBook.bookListNames removeObject:self.name];
 }
 
 - (void) removeAllBooks
@@ -83,7 +83,7 @@
     // 修改书单中图书的书单信息
     [self.books enumerateObjectsUsingBlock:^(Book * obj, NSUInteger idx, BOOL *stop)
     {
-        [obj.bookLists removeObject:self];
+        [obj.bookListNames removeObject:self.name];
     }];
     
     // 删除所有图书.

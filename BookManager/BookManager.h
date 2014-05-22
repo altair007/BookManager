@@ -18,7 +18,7 @@
 #pragma mark - 属性
 @property (nonatomic, copy) NSString * name; //!< 名字
 @property (nonatomic, retain) BookList * primaryBookList; //!< 主书单
-@property (nonatomic, retain) NSMutableDictionary * bookLists; //!< 书单.书单名作键,书单对象做值.
+@property (nonatomic, retain) NSMutableDictionary * bookLists; //!< 存储书单,包括主书单.书单名作键,书单对象做值.
 
 #pragma mark - 便利构造器
 /**
@@ -42,7 +42,7 @@
 
 #pragma mark - 实例方法
 /**
- *  添加书单,如果书单名为空,书单名重复或者书单恰好为主书单，则添加失败.
+ *  添加书单,如果书单名为空或者与已有书单名重复，则添加失败.
  *
  *  添加书单的同时,也会把书单中的书添加到主书单.
  *
@@ -53,7 +53,7 @@
 - (BOOL) addBookList: (BookList *) aBookList;
 
 /**
- *  删除书单,如果要删除的书单不存在，返回失败
+ *  删除书单,如果要删除的书单不存在，返回失败;不允许删除主书单.
  *
  *  默认执行的是先删除书单中的书,再删除书单.因为图书再被删除时可能会做一些额外的工作.
  *
@@ -71,12 +71,12 @@
 - (void) showBooksOfBookList: (NSString *) aBookListName;
 
 /**
- *  添加图书到指定书单.
+ *  添加图书到指定书单,不允许直接添加主书单中.
  *
- *  主书单是管理所有书籍的，书籍被添加到某个书单中时，也要被添加到主书单中
+ *   直接添加图书到主书单.主书单是管理所有书籍的，书籍被添加到某个书单中时，也要被添加到主书单中.
  *
  *  @param aBook     要添加的图书.
- *  @param aBookListName 指定的用于添加的书单的名字.
+ *  @param aBookListName 指定的用于添加的书单的名字.不存在对应名字的书单,则新建!
  *
  *  @return YES,添加成功;NO,添加失败.
  */

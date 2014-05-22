@@ -18,7 +18,7 @@
 @property (nonatomic, copy) NSString * author; //!< 作者.
 @property (nonatomic, assign) float price; //!< 价格.
 @property (nonatomic, copy) NSString * press; //!< 出版社.
-@property (nonatomic, retain) NSMutableArray * bookLists; //!< 所处的书单.
+@property (nonatomic, retain) NSMutableArray * bookListNames; //!< 存储书单名字的数组.
 #pragma mark - 便利构造器
 /**
  *  便利构造器,快速创建对象,并进行适当地初始化.

@@ -29,6 +29,9 @@
         self.name = name;
         self.primaryBookList = [BookList listWithName:@"所有书籍"];
         self.bookLists = [NSMutableDictionary dictionaryWithCapacity:42];
+        
+        // 把主书单添加到书单数组中.
+        [self.bookLists setObject:self.primaryBookList forKey: self.primaryBookList.name];
     }
     
     return self;
@@ -37,32 +40,8 @@
 #pragma mark - 实例方法
 - (BOOL) addBookList: (BookList *) aBookList
 {
-    // 要添加的书单,刚好是主书单吗?
-    if (aBookList == self.primaryBookList)
-    {
-        return NO;
-    }
-    
-    // 书单名为空吗?
-    if (nil == aBookList.name)
-    {
-        return NO;
-    }
-
-    // 书单名重复吗?
-    __block BOOL isExist = NO;
-    
-    [self.bookLists enumerateKeysAndObjectsUsingBlock:^(NSString * key, id obj, BOOL *stop)
-    {
-        if ([key isEqualToString:aBookList.name])
-        {
-            isExist = YES;
-            * stop = YES;
-        }
-    }];
-    
-    // 书单名重复,直接返回
-    if (isExist)
+    // 同名书单是否已经存在?
+    if (nil != [self.bookLists objectForKey:aBookList.name])
     {
         return NO;
     }
@@ -81,6 +60,12 @@
 
 - (BOOL) removeBookList: (NSString *) aBookListName
 {
+    // 不允许删除主书单.
+    if ([self.primaryBookList.name isEqualToString: aBookListName])
+    {
+        return  NO;
+    }
+    
     // 此书单真的存在吗?
     BookList * aBookList = [self.bookLists objectForKey:aBookListName];
     if (nil == aBookList)
@@ -110,11 +95,20 @@
 - (BOOL) addBook: (Book *) aBook
       ToBookList: (NSString *) aBookListName
 {
+    // 不允许直接添加到主书单中.
+    if ([self.primaryBookList.name isEqualToString:aBookListName])
+    {
+        return NO;
+    }
+    
+    // 获取对应的书单对象.
     BookList * aBookList = [self.bookLists objectForKey:aBookListName];
+    
     // 此书单是否存在?
     if (nil == aBookList)
     {
-        return NO;
+        // 不存在,则添加书单.
+        aBookList = [BookList listWithName: aBookListName];
     }
     
     // 添加图书到指定书单
@@ -133,34 +127,31 @@
 
 - (void) removeBookByName: (NSString *) aBookName
 {
-    // 图书名为空,直接返回.
-    if (nil == aBookName)
+    // 通过主书单,看这本书是否存在
+    Book * book = [self.primaryBookList bookByName:aBookName];
+    
+    if (nil == book)
     {
+        // 不存在,直接返回.
         return;
     }
     
-    // 在所有副书单中删除这本书
-    [self.bookLists enumerateKeysAndObjectsUsingBlock:^(id key, BookList * list, BOOL *stop)
+    // 通过书籍本身的书单名数组属性,找到存储此书的所有书单
+    NSMutableArray * lists = [NSMutableArray arrayWithCapacity:42];
+    [book.bookListNames enumerateObjectsUsingBlock:^(NSString * lisetName, NSUInteger idx, BOOL *stop)
     {
-        [list.books enumerateObjectsUsingBlock:^(Book * book, NSUInteger idx, BOOL *stop)
+        BookList * temp = [self.bookLists objectForKey:lisetName];
+        if (nil != temp)
         {
-            if ([book.name isEqualToString: aBookName])
-            {
-                [list removeBook:book];
-                * stop = YES;
-            }
-        }];
+            [lists addObject:temp];
+        }
     }];
     
-    // 删除主书单中的这本书
-    [self.primaryBookList.books enumerateObjectsUsingBlock:^(Book * book, NSUInteger idx, BOOL *stop)
-     {
-         if ([book.name isEqualToString: aBookName])
-         {
-             [self.primaryBookList removeBook:book];
-             * stop = YES;
-         }
-     }];
+    // 从书单中删除此书.
+    [lists enumerateObjectsUsingBlock:^(BookList * list, NSUInteger idx, BOOL *stop)
+    {
+        [list removeBook: book];
+    }];
     
 }
 

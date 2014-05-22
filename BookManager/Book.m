@@ -35,7 +35,7 @@
         self.press = press;
         
         // 对书单属性进行适当地初始化;否则,可能无法正常使用此属性.
-        self.bookLists = [NSMutableArray arrayWithCapacity:42];
+        self.bookListNames = [NSMutableArray arrayWithCapacity:42];
     }
     
     return self;
@@ -56,7 +56,7 @@
     self.name = nil;
     self.author = nil;
     self.press = nil;
-    [self.bookLists release];
+    [self.bookListNames release];
     
     [super dealloc];
 }
