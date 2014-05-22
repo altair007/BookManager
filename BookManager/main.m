@@ -47,9 +47,6 @@ int main(int argc, const char * argv[])
         
 		//（6）删除某个书单。
         result = [manager removeBookList:@"最爱"];
-        
-        
-        
     }
     return 0;
 }
