@@ -10,6 +10,9 @@
 		C2543FE3192CD65A00B0AA34 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C2543FE2192CD65A00B0AA34 /* Foundation.framework */; };
 		C2543FE6192CD65A00B0AA34 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = C2543FE5192CD65A00B0AA34 /* main.m */; };
 		C2543FEA192CD65A00B0AA34 /* BookManager.1 in CopyFiles */ = {isa = PBXBuildFile; fileRef = C2543FE9192CD65A00B0AA34 /* BookManager.1 */; };
+		C2543FF4192CD76300B0AA34 /* Book.m in Sources */ = {isa = PBXBuildFile; fileRef = C2543FF3192CD76300B0AA34 /* Book.m */; };
+		C2543FF7192CDC3500B0AA34 /* BookList.m in Sources */ = {isa = PBXBuildFile; fileRef = C2543FF6192CDC3500B0AA34 /* BookList.m */; };
+		C2543FFA192CE4F500B0AA34 /* BookManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C2543FF9192CE4F500B0AA34 /* BookManager.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -31,6 +34,13 @@
 		C2543FE5192CD65A00B0AA34 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		C2543FE8192CD65A00B0AA34 /* BookManager-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "BookManager-Prefix.pch"; sourceTree = "<group>"; };
 		C2543FE9192CD65A00B0AA34 /* BookManager.1 */ = {isa = PBXFileReference; lastKnownFileType = text.man; path = BookManager.1; sourceTree = "<group>"; };
+		C2543FF1192CD69F00B0AA34 /* readme.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = readme.md; sourceTree = SOURCE_ROOT; };
+		C2543FF2192CD76300B0AA34 /* Book.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Book.h; sourceTree = "<group>"; };
+		C2543FF3192CD76300B0AA34 /* Book.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Book.m; sourceTree = "<group>"; };
+		C2543FF5192CDC3500B0AA34 /* BookList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BookList.h; sourceTree = "<group>"; };
+		C2543FF6192CDC3500B0AA34 /* BookList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BookList.m; sourceTree = "<group>"; };
+		C2543FF8192CE4F500B0AA34 /* BookManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BookManager.h; sourceTree = "<group>"; };
+		C2543FF9192CE4F500B0AA34 /* BookManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BookManager.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -73,9 +83,16 @@
 		C2543FE4192CD65A00B0AA34 /* BookManager */ = {
 			isa = PBXGroup;
 			children = (
+				C2543FF1192CD69F00B0AA34 /* readme.md */,
 				C2543FE5192CD65A00B0AA34 /* main.m */,
 				C2543FE9192CD65A00B0AA34 /* BookManager.1 */,
 				C2543FE7192CD65A00B0AA34 /* Supporting Files */,
+				C2543FF2192CD76300B0AA34 /* Book.h */,
+				C2543FF3192CD76300B0AA34 /* Book.m */,
+				C2543FF5192CDC3500B0AA34 /* BookList.h */,
+				C2543FF6192CDC3500B0AA34 /* BookList.m */,
+				C2543FF8192CE4F500B0AA34 /* BookManager.h */,
+				C2543FF9192CE4F500B0AA34 /* BookManager.m */,
 			);
 			path = BookManager;
 			sourceTree = "<group>";
@@ -139,7 +156,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C2543FF4192CD76300B0AA34 /* Book.m in Sources */,
 				C2543FE6192CD65A00B0AA34 /* main.m in Sources */,
+				C2543FFA192CE4F500B0AA34 /* BookManager.m in Sources */,
+				C2543FF7192CDC3500B0AA34 /* BookList.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -219,6 +239,7 @@
 		C2543FEE192CD65A00B0AA34 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_OBJC_ARC = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "BookManager/BookManager-Prefix.pch";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -228,6 +249,7 @@
 		C2543FEF192CD65A00B0AA34 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_OBJC_ARC = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "BookManager/BookManager-Prefix.pch";
 				PRODUCT_NAME = "$(TARGET_NAME)";
