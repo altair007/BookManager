@@ -25,8 +25,23 @@ int main(int argc, const char * argv[])
         BookList * list3 = [BookList listWithName:@"最爱"];
         BOOL result;
         result = [manager addBookList:list1];
+        if (result)
+        {
+            NSLog(@"操作成功");
+        }
+        
         result = [manager addBookList:list2];
+        if (result)
+        {
+            NSLog(@"操作成功");
+        }
+        
         result = [manager addBookList:list3];
+        if (result)
+        {
+            NSLog(@"操作成功");
+        }
+        
         
         // （3）添加图书到某个书单，添加的书籍中，有一本图书同时被添加到iOS开发和最爱两个书单中，需要返回结果：成功或者失败
     
@@ -35,9 +50,29 @@ int main(int argc, const char * argv[])
         Book * book3 = [Book bookWithName:@"iOS 5基础教程" author:@"Dave Mark　Jack Nutting　Jeff LaMarche" price:20.6 press:@"人民邮电出版社"];
         
         result = [manager addBook:book1 ToBookList:@"IOS开发"];
+        if (result)
+        {
+            NSLog(@"操作成功");
+        }
+        
         result = [manager addBook:book2 ToBookList:@"游戏攻略"];
+        if (result)
+        {
+            NSLog(@"操作成功");
+        }
+        
         result = [manager addBook:book3 ToBookList:@"最爱"];
+        if (result)
+        {
+            NSLog(@"操作成功");
+        }
+        
         result = [manager addBook:book3 ToBookList:@"IOS开发"];
+        if (result)
+        {
+            NSLog(@"操作成功");
+        }
+        
         
 		//（4）删除图书，根据书籍的名字删除图书，注意：需要将书籍从所有管理它的书单中清除
         [manager removeBookByName:@"iOS 5基础教程"];
@@ -47,6 +82,11 @@ int main(int argc, const char * argv[])
         
 		//（6）删除某个书单。
         result = [manager removeBookList:@"最爱"];
+        if (result)
+        {
+            NSLog(@"操作成功");
+        }
+        
     }
     return 0;
 }

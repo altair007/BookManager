@@ -56,7 +56,8 @@
     self.name = nil;
     self.author = nil;
     self.press = nil;
-    [self.bookListNames release];
+    self.bookListNames = nil;
+    self.bookListNames = nil;
     
     [super dealloc];
 }
